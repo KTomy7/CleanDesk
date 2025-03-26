@@ -18,7 +18,7 @@ def get_target_direcory():
     """
 
     config = load_config()
-    return config.get("target_directory", ".") # Defaults to current directory if not set
+    return config.get("target_directory")
 
 def validate_directory(directory):
     """
