@@ -1,24 +1,13 @@
 import os
 import shutil
+from utils import load_config   
 
-# Define your folder categories
-CATEGORY_MAP = {
-    'Images': ['.png', '.jpg', '.jpeg', '.gif', '.bmp'],
-    'Documents': ['.pdf', '.docx', '.txt', '.pptx', '.xlsx'],
-    'Archives': ['.zip', '.tar', '.gz', '.rar'],
-    'Videos': ['.mp4', '.mkv', '.avi'],
-    "Music": [".mp3", ".wav", ".flac"],
-    "Executables": [".exe", ".msi"],
-}
+CONFIG = load_config()
 
 def organize_files(source_dir):
     """
     Scans and sorts files in the specified directory into categorized subfolders.
     """
-
-    if not os.path.isdir(source_dir):
-        print(f"Error: The directory '{source_dir}' does not exist.")
-        return
 
     for filename in os.listdir(source_dir):
         file_path = os.path.join(source_dir, filename)
@@ -28,7 +17,7 @@ def organize_files(source_dir):
             destination_folder = None
             
             # Check if the file extension matches any category
-            for folder, extensions in CATEGORY_MAP.items():
+            for folder, extensions in CONFIG["categories"].items():
                 if ext in extensions:
                     destination_folder = os.path.join(source_dir, folder)
                     break

@@ -1,0 +1,11 @@
+{
+  "target_directory": "C:/Users/kisst/Downloads",
+  "categories": {
+    "Images": [".png", ".jpg", ".jpeg", ".gif", ".bmp"],
+    "Documents": [".pdf", ".docx", ".txt", ".pptx", ".xlsx", ".csv"],
+    "Videos": [".mp4", ".mkv", ".avi", ".mov"],
+    "Music": [".mp3", ".wav", ".flac"],
+    "Archives": [".zip", ".tar", ".gz", ".rar"],
+    "Executables": [".exe", ".msi"]
+  }
+}

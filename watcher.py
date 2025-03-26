@@ -15,10 +15,6 @@ class CleanDeskHandler(FileSystemEventHandler):
             organize_files(os.path.dirname(event.src_path))
 
 def start_monitoring(target_directory):
-    if not os.path.isdir(target_directory):
-        print(f"Error: The directory '{target_directory}' does not exist.")
-        return
-
     event_handler = CleanDeskHandler()
     observer = Observer()
     observer.schedule(event_handler, path=target_directory, recursive=False)
