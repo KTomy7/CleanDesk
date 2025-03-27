@@ -24,20 +24,15 @@ def start_monitoring(target_directory):
     observer = Observer()
     observer.schedule(event_handler, path=target_directory, recursive=False)
     observer.start()
-
-    print(f"Monitoring started on '{target_directory}'... Press Ctrl+C to stop.")
-    logging.info(f"Monitoring started on '{target_directory}'...")
+    
+    logging.info(f"Monitoring started on '{target_directory}'... Press Ctrl+C to stop.")
 
     try:
         while True:
             time.sleep(2)
     except KeyboardInterrupt:
-        print("\nStopping monitoring...")
-        logging.info("\nStopping monitoring...")
-        
         observer.stop()
         observer.join()
-        
-        print("Monitoring stopped.")
+
         logging.info("Monitoring stopped.")
         logging.info("CleanDesk stopped.")

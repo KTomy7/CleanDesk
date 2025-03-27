@@ -22,6 +22,10 @@ logging_level = getattr(logging, CONFIG.get("logging_level", "INFO").upper(), lo
 logging.basicConfig(
     level=logging_level,
     format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler(LOG_FILE),
+        logging.StreamHandler() 
+    ]
 )
     
 def get_target_direcory():
