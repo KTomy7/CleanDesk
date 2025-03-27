@@ -1,5 +1,6 @@
 {
   "target_directory": "C:/Users/kisst/Downloads",
+  "logging_level": "INFO",
   "categories": {
     "Images": [".png", ".jpg", ".jpeg", ".gif", ".bmp"],
     "Documents": [".pdf", ".docx", ".txt", ".pptx", ".xlsx", ".csv"],
@@ -7,5 +8,6 @@
     "Music": [".mp3", ".wav", ".flac"],
     "Archives": [".zip", ".tar", ".gz", ".rar"],
     "Executables": [".exe", ".msi"]
-  }
+  },
+  "other_files": "Others"
 }

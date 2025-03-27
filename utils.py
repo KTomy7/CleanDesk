@@ -1,5 +1,6 @@
 import os
 import json
+import logging
 
 def load_config(config_path="config.json"):
     """
@@ -7,10 +8,21 @@ def load_config(config_path="config.json"):
     """
 
     if not os.path.exists(config_path):
+        logging.error(f"Configuration file '{config_path}' not found.")
         raise FileNotFoundError(f"Configuration file '{config_path}' not found.")
 
     with open("config.json", "r", encoding="utf-8") as file:
         return json.load(file)
+
+CONFIG = load_config()
+
+# Set up logging globally
+LOG_FILE = "cleandesk.log"
+logging_level = getattr(logging, CONFIG.get("logging_level", "INFO").upper(), logging.INFO)
+logging.basicConfig(
+    level=logging_level,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
     
 def get_target_direcory():
     """
@@ -26,6 +38,6 @@ def validate_directory(directory):
     """
 
     if not os.path.isdir(directory):
-        print(f"Error: The directory '{directory}' does not exist.")
+        logging.error(f"The directory '{directory}' does not exist.")
         return False
     return True
