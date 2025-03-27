@@ -44,7 +44,7 @@ Edit `config.json` to set your target directory and sorting rules.
         "Videos": [".mp4", ".mkv"],
         "Music": [".mp3", ".wav"]
     },
-    "unknown_files": "Others"
+    "other_files": "Others"
 }
 ```
 
