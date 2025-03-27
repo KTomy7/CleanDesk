@@ -35,16 +35,17 @@ Edit `config.json` to set your target directory and sorting rules.
 
 ```json
 {
-    "target_directory": "/path/to/your/Downloads",
-    "logging_level": "INFO",
-    "categories": {
-        "Images": [".png", ".jpg", ".jpeg", ".gif"],
-        "Documents": [".pdf", ".docx", ".txt", ".xlsx"],
-        "Archives": [".zip", ".tar", ".rar"],
-        "Videos": [".mp4", ".mkv"],
-        "Music": [".mp3", ".wav"]
-    },
-    "other_files": "Others"
+  "target_directory": "/path/to/your/Downloads",
+  "logging_level": "INFO",
+  "categories": {
+    "Images": [".png", ".jpg", ".jpeg", ".gif"],
+    "Documents": [".pdf", ".docx", ".txt", ".xlsx", ".pptx", ".csv"],
+    "Videos": [".mp4", ".mkv", ".avi", ".mov"],
+    "Music": [".mp3", ".wav", ".flac"],
+    "Archives": [".zip", ".tar", ".gz", ".rar"],
+    "Executables": [".exe", ".msi"]
+  },
+  "other_files": "Others"
 }
 ```
 
