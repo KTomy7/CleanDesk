@@ -2,9 +2,19 @@
 import time
 import os
 import logging
+import threading
+import keyboard
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 from file_organizer import organize_files
+
+running = True
+
+def stop_program():
+    global running
+    keyboard.wait("ctrl+c")  # Wait until Ctrl + C is pressed
+    logging.info("Ctrl + C detected! Stopping the program...")
+    running = False 
 
 class CleanDeskHandler(FileSystemEventHandler):
     # Event handler for the watchdog observer
@@ -25,12 +35,15 @@ def start_monitoring(target_directory):
     observer.schedule(event_handler, path=target_directory, recursive=False)
     observer.start()
     
+    stop_thread = threading.Thread(target=stop_program, daemon=True)
+    stop_thread.start()
+    
     logging.info(f"Monitoring started on '{target_directory}'... Press Ctrl+C to stop.")
 
     try:
-        while True:
+        while running:
             time.sleep(2)
-    except KeyboardInterrupt:
+    finally:
         observer.stop()
         observer.join()
 
