@@ -1,5 +1,5 @@
-from file_organizer import organize_files
-from watcher import start_monitoring
+from core.file_organizer import organize_files
+from core.watcher import start_monitoring
 from utils import get_target_direcory, validate_directory
 import logging
 

@@ -6,7 +6,7 @@ import threading
 import keyboard
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-from file_organizer import organize_files
+from core.file_organizer import organize_files
 
 running = True
 
