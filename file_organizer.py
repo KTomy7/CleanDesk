@@ -1,5 +1,6 @@
 import os
 import shutil
+import time
 import logging
 from utils import load_config   
 
@@ -16,9 +17,13 @@ def organize_files(source_dir):
         file_path = os.path.join(source_dir, filename)
 
         if os.path.isfile(file_path):
+            if is_old_file(file_path):
+                move_file(file_path, os.path.join(source_dir, CONFIG["to_delete_files"]))
+                continue
+            
             ext = os.path.splitext(filename)[1].lower()
             destination_folder = None
-            
+                
             # Check if the file extension matches any category
             for folder, extensions in CONFIG["categories"].items():
                 if ext in extensions:
@@ -29,8 +34,18 @@ def organize_files(source_dir):
             if destination_folder is None:
                 destination_folder = os.path.join(source_dir, CONFIG["other_files"])
 
-            move_file(file_path, destination_folder)    
-            
+            move_file(file_path, destination_folder)        
+                
+def is_old_file(file_path):
+    """
+    Checks if the file was modified within the last 'days_to_consider' days.
+    """
+
+    if not os.path.exists(file_path):
+        return False 
+
+    file_modified_time = os.path.getmtime(file_path)  # Last modification time
+    return (time.time() - file_modified_time) / (60 * 60 * 24) > CONFIG["days_to_consider"]
 
 def move_file(file_path, destination_folder):
     """   
