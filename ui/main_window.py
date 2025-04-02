@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QPushButton
 from ui.file_browser import FileBrowser
 from ui.settings import Settings
 from core.file_organizer import organize_files
-from core.watcher import MonitorThread
+from core.file_watcher import FileMonitorThread
 from utils import get_target_direcory, validate_directory
 
 class MainWindow(QMainWindow):
@@ -59,7 +59,7 @@ class MainWindow(QMainWindow):
         organize_files(target_directory)
 
         # Start the monitoring thread
-        self.monitor_thread = MonitorThread(target_directory)
+        self.monitor_thread = FileMonitorThread(target_directory)
         self.monitor_thread.start()
 
     def stop_monitoring(self):
