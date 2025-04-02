@@ -2,7 +2,7 @@ import os
 import shutil
 import time
 import logging
-from utils import load_config   
+from helpers.utils import load_config   
 
 CONFIG = load_config()
 

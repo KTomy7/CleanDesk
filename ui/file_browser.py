@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QLabel, QHBoxLayout, QFileDialog
-from utils import get_target_direcory, validate_directory
+from helpers.utils import get_target_direcory, validate_directory
 
 class FileBrowser(QWidget):
     def __init__(self, parent=None):

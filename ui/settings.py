@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QLabel, QSpinBox, QHBoxLayout
-from utils import load_config
+from helpers.utils import load_config
 
 CONFIG = load_config()
 class Settings(QWidget):

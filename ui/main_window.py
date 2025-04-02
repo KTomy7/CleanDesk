@@ -4,7 +4,7 @@ from ui.file_browser import FileBrowser
 from ui.settings import Settings
 from core.file_organizer import organize_files
 from core.file_watcher import FileMonitorThread
-from utils import get_target_direcory, validate_directory
+from helpers.utils import get_target_direcory, validate_directory
 
 class MainWindow(QMainWindow):
     def __init__(self):
