@@ -1,6 +1,7 @@
 import os
 import json
 import logging
+from PyQt6.QtCore import QFile, QTextStream
 
 def load_config(config_path="config.json"):
     """
@@ -45,3 +46,12 @@ def validate_directory(directory):
         logging.error(f"The directory '{directory}' does not exist.")
         return False
     return True
+
+def apply_stylesheet(app):
+    file = QFile("resources/style.qss")
+    if file.open(QFile.OpenModeFlag.ReadOnly):
+        stream = QTextStream(file)
+        qss = stream.readAll()
+        app.setStyleSheet(qss)
+        file.close()
+        

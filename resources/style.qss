@@ -1,0 +1,47 @@
+QWidget {
+    background-color: #2e2e2e;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* Button Styles */
+QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #3e8e41;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+    border: 2px solid #368036;
+}
+
+/* Label Styles */
+QLabel {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+/* SpinBox Styles */
+QSpinBox {
+    background-color: #444444;
+    color: #ffffff;
+    border: 2px solid #666666;
+    padding: 5px;
+    font-size: 14px;
+    width: 120px;  /* Set a fixed width */
+}
+
+/* Scroll Area Styles */
+QScrollArea {
+    border: none;
+}
+
+/* Window Style */
+QMainWindow {
+    background-color: #222222;
+}
