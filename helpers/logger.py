@@ -23,7 +23,7 @@ class CustomTimedRotatingFileHandler(TimedRotatingFileHandler):
         """
         
         current_date = datetime.now().strftime("%Y-%m-%d")
-        log_filename = os.path.join("logs", f"{self.baseFilename}_{current_date}.log")
+        log_filename = os.path.join("logs", f"CleanDesk-log_{current_date}.log")
 
         # Perform the rollover
         self.stream.close()
