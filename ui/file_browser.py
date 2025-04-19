@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QLabel, QHBoxLayout, QFileDialog
-from helpers import get_target_directory, logger
+from helpers import get_target_directory, logger, update_config_value
 
 class FileBrowser(QWidget):
     def __init__(self, parent=None):
@@ -37,6 +37,7 @@ class FileBrowser(QWidget):
         if directory:
             logger.info(f"Directory selected: '{directory}'")
             self.set_label_text(directory)
-            # You can save this path for use in your app, e.g., save it to a config or variable
+            update_config_value("target_directory", directory)
+            logger.info(f"Updated target directory in configuration: '{directory}'")
         else:
             logger.warning("No directory selected.")

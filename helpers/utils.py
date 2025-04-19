@@ -1,33 +1,14 @@
 import os
-import json
 from PyQt6.QtCore import QFile, QTextStream
-from helpers import logger
-
-def load_config(config_path="config.json"):
-    """
-    Loads the configuration from the 'config.json' file.
-    """
-    logger.info(f"Attempting to load configuration from '{config_path}'.")
-    if not os.path.exists(config_path):
-        logger.error(f"Configuration file '{config_path}' not found.")
-        raise FileNotFoundError(f"Configuration file '{config_path}' not found.")
-
-    try:
-        with open(config_path, "r", encoding="utf-8") as file:
-            config = json.load(file)
-            logger.info(f"Configuration successfully loaded from '{config_path}'.")
-            return config
-    except json.JSONDecodeError as e:
-        logger.error(f"Error decoding JSON from '{config_path}': {e}")
-        raise
+from helpers.logger import logger
+from helpers.config_helper import get_config_value
     
 def get_target_directory():
     """
     Retrieves the target directory from the configuration file.
     """
     logger.info("Retrieving target directory from configuration.")
-    config = load_config()
-    directory = config.get("target_directory")
+    directory = get_config_value("target_directory")
 
     if validate_directory(directory):
         logger.info(f"Target directory returned: '{directory}'.")

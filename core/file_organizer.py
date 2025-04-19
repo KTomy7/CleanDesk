@@ -1,9 +1,7 @@
 import os
 import shutil
 import time
-from helpers import load_config, logger   
-
-CONFIG = load_config()
+from helpers import logger, get_config_value   
 
 def organize_files(source_dir):
     """
@@ -18,15 +16,21 @@ def organize_files(source_dir):
         if os.path.isfile(file_path):
             logger.info(f"Processing file: '{filename}'")
             if is_old_file(file_path):
-                logger.info(f"File '{filename}' is considered old. Moving to '{CONFIG['to_delete_files']}' folder.")
-                move_file(file_path, os.path.join(source_dir, CONFIG["to_delete_files"]))
-                continue
+                auto_delete = get_config_value("auto_delete")
+                if auto_delete:
+                    logger.info(f"File '{filename}' is considered old and will be deleted.")
+                    os.remove(file_path)
+                    continue
+                else:
+                    logger.info(f"File '{filename}' is considered old. Moving to '{get_config_value('to_delete_files')}' folder.")
+                    move_file(file_path, os.path.join(source_dir, get_config_value("to_delete_files")))
+                    continue
             
             ext = os.path.splitext(filename)[1].lower()
             destination_folder = None
                 
             # Check if the file extension matches any category
-            for folder, extensions in CONFIG["categories"].items():
+            for folder, extensions in get_config_value("categories").items():
                 if ext in extensions:
                     destination_folder = os.path.join(source_dir, folder)
                     logger.info(f"File '{filename}' matches category '{folder}' based on extension '{ext}'.")
@@ -34,7 +38,7 @@ def organize_files(source_dir):
 
             # If no category matched, move the file to the 'Others' folder
             if destination_folder is None:
-                destination_folder = os.path.join(source_dir, CONFIG["other_files"])
+                destination_folder = os.path.join(source_dir, get_config_value("other_files"))
                 logger.info(f"File '{filename}' does not match any category. Moving to 'Others' folder.")
 
             move_file(file_path, destination_folder)        
@@ -53,7 +57,7 @@ def is_old_file(file_path):
         return False 
 
     file_modified_time = os.path.getmtime(file_path)  # Last modification time
-    is_old = (time.time() - file_modified_time) / (60 * 60 * 24) > CONFIG["days_to_consider"]
+    is_old = (time.time() - file_modified_time) / (60 * 60 * 24) > get_config_value("days_to_consider")
     logger.info(f"File '{os.path.basename(file_path)}' is {'old' if is_old else 'not old'} based on modification time.")
     return is_old
 
