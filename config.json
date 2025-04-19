@@ -1,6 +1,5 @@
 {
   "target_directory": "/path/to/your/Downloads",
-  "logging_level": "INFO",
   "categories": {
     "Images": [".png", ".jpg", ".jpeg", ".gif"],
     "Documents": [".pdf", ".docx", ".txt", ".xlsx", ".pptx", ".csv"],
