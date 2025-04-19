@@ -16,7 +16,7 @@ def organize_files(source_dir):
         file_path = os.path.join(source_dir, filename)
 
         if os.path.isfile(file_path):
-            logger.debug(f"Processing file: '{filename}'")
+            logger.info(f"Processing file: '{filename}'")
             if is_old_file(file_path):
                 logger.info(f"File '{filename}' is considered old. Moving to '{CONFIG['to_delete_files']}' folder.")
                 move_file(file_path, os.path.join(source_dir, CONFIG["to_delete_files"]))
@@ -29,17 +29,17 @@ def organize_files(source_dir):
             for folder, extensions in CONFIG["categories"].items():
                 if ext in extensions:
                     destination_folder = os.path.join(source_dir, folder)
-                    logger.debug(f"File '{filename}' matches category '{folder}' based on extension '{ext}'.")
+                    logger.info(f"File '{filename}' matches category '{folder}' based on extension '{ext}'.")
                     break
 
             # If no category matched, move the file to the 'Others' folder
             if destination_folder is None:
                 destination_folder = os.path.join(source_dir, CONFIG["other_files"])
-                logger.debug(f"File '{filename}' does not match any category. Moving to 'Others' folder.")
+                logger.info(f"File '{filename}' does not match any category. Moving to 'Others' folder.")
 
             move_file(file_path, destination_folder)        
         else:
-            logger.debug(f"Skipping non-file item: '{filename}'")
+            logger.info(f"Skipping non-file item: '{filename}'")
     
     logger.info(f"Finished organizing files in '{source_dir}'.")
                 
@@ -54,7 +54,7 @@ def is_old_file(file_path):
 
     file_modified_time = os.path.getmtime(file_path)  # Last modification time
     is_old = (time.time() - file_modified_time) / (60 * 60 * 24) > CONFIG["days_to_consider"]
-    logger.debug(f"File '{os.path.basename(file_path)}' is {'old' if is_old else 'not old'} based on modification time.")
+    logger.info(f"File '{os.path.basename(file_path)}' is {'old' if is_old else 'not old'} based on modification time.")
     return is_old
 
 def move_file(file_path, destination_folder):

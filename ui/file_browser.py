@@ -25,10 +25,10 @@ class FileBrowser(QWidget):
         layout.addWidget(self.browse_button)
 
         self.setLayout(layout)
-        logger.debug("FileBrowser UI initialized.")
+        logger.info("FileBrowser UI initialized.")
 
     def set_label_text(self, directoryPath):
-        logger.debug(f"Setting label text to: 'Selected folder: {directoryPath}'")
+        logger.info(f"Setting label text to: 'Selected folder: {directoryPath}'")
         self.label.setText(f"Selected folder: {directoryPath}")  
 
     def browse_directory(self):

@@ -16,7 +16,7 @@ class FileWatcherHandler(FileSystemEventHandler):
             except Exception as e:
                 logger.error(f"Error while organizing file '{event.src_path}': {e}")
         else:
-            logger.debug(f"Ignored directory creation event: {event.src_path}")
+            logger.info(f"Ignored directory creation event: {event.src_path}")
 
 class FileMonitorThread(threading.Thread):
     def __init__(self, target_directory):

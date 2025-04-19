@@ -22,23 +22,23 @@ class MainWindow(QMainWindow):
         # Create file browser and settings widgets
         self.file_browser = FileBrowser(self)
         layout.addWidget(self.file_browser)
-        logger.debug("FileBrowser widget added to the main window.")
+        logger.info("FileBrowser widget added to the main window.")
 
         self.settings = Settings(self)
         layout.addWidget(self.settings)
-        logger.debug("Settings widget added to the main window.")
+        logger.info("Settings widget added to the main window.")
 
         # Add start/stop buttons for monitoring
         self.start_button = QPushButton("Start Monitoring")
         self.start_button.clicked.connect(self.start_monitoring)
-        logger.debug("Start Monitoring button created and connected.")
+        logger.info("Start Monitoring button created and connected.")
 
         self.stop_button = QPushButton("Stop Monitoring")
         self.stop_button.clicked.connect(self.stop_monitoring)
-        logger.debug("Stop Monitoring button created and connected.")
+        logger.info("Stop Monitoring button created and connected.")
 
         self.setButtonStates(True, False)
-        logger.debug("Initial button states set: Start enabled, Stop disabled.")
+        logger.info("Initial button states set: Start enabled, Stop disabled.")
         
         layout.addWidget(self.start_button)
         layout.addWidget(self.stop_button)
@@ -52,7 +52,7 @@ class MainWindow(QMainWindow):
         self.monitor_thread = None  # Store the monitoring thread reference
 
     def setButtonStates(self, start_enabled, stop_enabled):
-        logger.debug(f"Setting button states: Start enabled={start_enabled}, Stop enabled={stop_enabled}.")
+        logger.info(f"Setting button states: Start enabled={start_enabled}, Stop enabled={stop_enabled}.")
         self.start_button.setEnabled(start_enabled)
         self.stop_button.setEnabled(stop_enabled)
 

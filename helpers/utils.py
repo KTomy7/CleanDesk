@@ -7,7 +7,7 @@ def load_config(config_path="config.json"):
     """
     Loads the configuration from the 'config.json' file.
     """
-    logger.debug(f"Attempting to load configuration from '{config_path}'.")
+    logger.info(f"Attempting to load configuration from '{config_path}'.")
     if not os.path.exists(config_path):
         logger.error(f"Configuration file '{config_path}' not found.")
         raise FileNotFoundError(f"Configuration file '{config_path}' not found.")
@@ -25,7 +25,7 @@ def get_target_directory():
     """
     Retrieves the target directory from the configuration file.
     """
-    logger.debug("Retrieving target directory from configuration.")
+    logger.info("Retrieving target directory from configuration.")
     config = load_config()
     directory = config.get("target_directory")
 
@@ -40,7 +40,7 @@ def validate_directory(directory):
     """
     Checks if a directory exists. Returns True if valid, False otherwise.
     """
-    logger.debug(f"Validating directory: '{directory}'.")
+    logger.info(f"Validating directory: '{directory}'.")
     if os.path.isdir(directory):
         logger.info(f"Directory '{directory}' exists and is valid.")
         return True
@@ -52,7 +52,7 @@ def apply_stylesheet(app):
     """
     Applies a stylesheet to the given PyQt application.
     """
-    logger.debug("Attempting to apply stylesheet from 'resources/style.qss'.")
+    logger.info("Attempting to apply stylesheet from 'resources/style.qss'.")
     file = QFile("resources/style.qss")
     if file.open(QFile.OpenModeFlag.ReadOnly):
         try:
