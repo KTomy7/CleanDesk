@@ -12,7 +12,7 @@ Tired of a cluttered **Downloads** folder? **CleanDesk** automatically organizes
 ✅ **Real-time Monitoring** – Uses `watchdog` to track file changes.  
 ✅ **Auto-Sorting** – Moves PDFs, images, ZIPs, and more into proper folders.  
 ✅ **Custom Rules** – Define your own file categories in `config.json`.  
-✅ **Space Management** – Automatically deletes old files after a threshold (optional).
+✅ **Space Management** – Automatically deletes old files after a threshold (optional).  
 ✅ **Logging** – Tracks file movements and errors using **daily log rotation**.
 
 ## **🛠️ Installation**
