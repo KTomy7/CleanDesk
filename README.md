@@ -83,7 +83,7 @@ CleanDesk creates log files with daily rotation inside the `logs/` folder:
 
 ```lua
 logs/
-  └── app_log_2025-04-19.log
+  └── CleanDesk-log_dd-mm-yyyy.log
 ```
 
 Useful for debugging and tracking activity.
