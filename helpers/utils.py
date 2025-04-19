@@ -1,57 +1,69 @@
 import os
 import json
-import logging
 from PyQt6.QtCore import QFile, QTextStream
+from helpers import logger
 
 def load_config(config_path="config.json"):
     """
     Loads the configuration from the 'config.json' file.
     """
-
+    logger.debug(f"Attempting to load configuration from '{config_path}'.")
     if not os.path.exists(config_path):
-        logging.error(f"Configuration file '{config_path}' not found.")
+        logger.error(f"Configuration file '{config_path}' not found.")
         raise FileNotFoundError(f"Configuration file '{config_path}' not found.")
 
-    with open("config.json", "r", encoding="utf-8") as file:
-        return json.load(file)
-
-CONFIG = load_config()
-
-# Set up logging globally
-LOG_FILE = "cleandesk.log"
-logging_level = getattr(logging, CONFIG.get("logging_level", "INFO").upper(), logging.INFO)
-logging.basicConfig(
-    level=logging_level,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler(LOG_FILE),
-        logging.StreamHandler() 
-    ]
-)
+    try:
+        with open(config_path, "r", encoding="utf-8") as file:
+            config = json.load(file)
+            logger.info(f"Configuration successfully loaded from '{config_path}'.")
+            return config
+    except json.JSONDecodeError as e:
+        logger.error(f"Error decoding JSON from '{config_path}': {e}")
+        raise
     
-def get_target_direcory():
+def get_target_directory():
     """
     Retrieves the target directory from the configuration file.
     """
-
+    logger.debug("Retrieving target directory from configuration.")
     config = load_config()
-    return config.get("target_directory")
+    directory = config.get("target_directory")
+
+    if validate_directory(directory):
+        logger.info(f"Target directory returned: '{directory}'.")
+        return directory
+    else:
+        logger.error(f"Invalid target directory: {directory}")
+        raise ValueError(f"Invalid target directory: {directory}")
 
 def validate_directory(directory):
     """
     Checks if a directory exists. Returns True if valid, False otherwise.
     """
-
-    if not os.path.isdir(directory):
-        logging.error(f"The directory '{directory}' does not exist.")
+    logger.debug(f"Validating directory: '{directory}'.")
+    if os.path.isdir(directory):
+        logger.info(f"Directory '{directory}' exists and is valid.")
+        return True
+    else:
+        logger.warning(f"Directory '{directory}' does not exist or is invalid.")
         return False
-    return True
 
 def apply_stylesheet(app):
+    """
+    Applies a stylesheet to the given PyQt application.
+    """
+    logger.debug("Attempting to apply stylesheet from 'resources/style.qss'.")
     file = QFile("resources/style.qss")
     if file.open(QFile.OpenModeFlag.ReadOnly):
-        stream = QTextStream(file)
-        qss = stream.readAll()
-        app.setStyleSheet(qss)
-        file.close()
+        try:
+            stream = QTextStream(file)
+            qss = stream.readAll()
+            app.setStyleSheet(qss)
+            logger.info("Stylesheet successfully applied.")
+        except Exception as e:
+            logger.error(f"Error applying stylesheet: {e}")
+        finally:
+            file.close()
+    else:
+        logger.error("Failed to open 'resources/style.qss'.")
         
