@@ -52,3 +52,5 @@ def setup_logger():
     logger.addHandler(log_handler)
 
     return logger
+
+logger = setup_logger()
