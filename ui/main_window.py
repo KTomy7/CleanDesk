@@ -87,3 +87,7 @@ class MainWindow(QMainWindow):
             logger.info("File monitoring thread stopped.")
         else:
             logger.warning("Stop Monitoring button clicked, but no monitoring thread was active.")
+
+    def closeEvent(self, event):
+        logger.info("Application closed.")
+        super().closeEvent(event) 
