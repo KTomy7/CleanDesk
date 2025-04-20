@@ -20,6 +20,28 @@ QPushButton:hover {
     border: 2px solid #368036;
 }
 
+/* Start Button */
+QPushButton#startButton {
+    background-color: #4CAF50;
+    border: 2px solid #3e8e41;
+}
+
+QPushButton#startButton:hover {
+    background-color: #45a049;
+    border: 2px solid #368036;
+}
+
+/* Stop Button */
+QPushButton#stopButton {
+    background-color: #f44336;
+    border: 2px solid #d32f2f;
+}
+
+QPushButton#stopButton:hover {
+    background-color: #e53935;
+    border: 2px solid #b71c1c;
+}
+
 /* Label Styles */
 QLabel {
     color: #ffffff;
@@ -34,6 +56,31 @@ QSpinBox {
     padding: 5px;
     font-size: 14px;
     width: 120px;  /* Set a fixed width */
+}
+
+/* Checkbox Styles */
+QCheckBox {
+    spacing: 8px;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 5px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #4CAF50;
+    border-radius: 3px;
+    background-color: #2e2e2e;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #4CAF50;
+    image: url(:/icons/checkmark.png); /* Optional: use a custom checkmark */
+}
+
+QCheckBox::indicator:hover {
+    border: 2px solid #45a049;
 }
 
 /* Scroll Area Styles */

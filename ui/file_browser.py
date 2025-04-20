@@ -1,4 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QLabel, QHBoxLayout, QFileDialog
+from PyQt6.QtGui import QCursor
+from PyQt6.QtCore import Qt
 from helpers import get_target_directory, logger, update_config_value
 
 class FileBrowser(QWidget):
@@ -18,6 +20,7 @@ class FileBrowser(QWidget):
         self.set_label_text(directory_path)
         self.browse_button = QPushButton("Browse")
         self.browse_button.clicked.connect(self.browse_directory)
+        self.browse_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         # Create layout 
         layout = QHBoxLayout() 

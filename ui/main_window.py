@@ -1,5 +1,6 @@
-from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QPushButton
+from PyQt6.QtGui import QIcon, QCursor
+from PyQt6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QPushButton, QHBoxLayout
+from PyQt6.QtCore import Qt
 from ui.file_browser import FileBrowser
 from ui.settings import Settings
 from core.file_organizer import organize_files
@@ -30,18 +31,25 @@ class MainWindow(QMainWindow):
 
         # Add start/stop buttons for monitoring
         self.start_button = QPushButton("Start Monitoring")
+        self.start_button.setObjectName("startButton")
         self.start_button.clicked.connect(self.start_monitoring)
+        self.start_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         logger.info("Start Monitoring button created and connected.")
 
         self.stop_button = QPushButton("Stop Monitoring")
+        self.stop_button.setObjectName("stopButton")
         self.stop_button.clicked.connect(self.stop_monitoring)
+        self.stop_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         logger.info("Stop Monitoring button created and connected.")
 
         self.setButtonStates(True, False)
         logger.info("Initial button states set: Start enabled, Stop disabled.")
         
-        layout.addWidget(self.start_button)
-        layout.addWidget(self.stop_button)
+        buttons_layout = QHBoxLayout()
+        buttons_layout.addWidget(self.start_button)
+        buttons_layout.addWidget(self.stop_button)
+
+        layout.addLayout(buttons_layout)  # Add the buttons layout to the main layout
 
         # Create a QWidget to hold the layout
         container = QWidget()
