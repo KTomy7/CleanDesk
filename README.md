@@ -55,7 +55,9 @@ Edit `config.json` to set your target directory and sorting rules.
   },
   "other_files": "Others",
   "to_delete_files": "To Delete",
-  "days_to_consider": 30
+  "days_to_consider": 30,
+  "auto_delete_old_files": false,
+  "storage_cleanup": false
 }
 ```
 

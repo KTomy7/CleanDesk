@@ -15,8 +15,10 @@ DEFAULT_CONFIG = {
         "Executables": [".exe", ".msi"]
     },
     "other_files": "Others",
-    "auto_delete": False, 
-    "threshold_days": 30 
+    "to_delete_files": "To Delete",
+    "days_to_consider": 30,
+    "auto_delete_old_files": False,
+    "storage_cleanup": False
 }
 
 def load_config():
